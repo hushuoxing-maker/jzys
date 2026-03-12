@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>纸上乾坤 · 剪纸艺术海报提示词智能体</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:"Microsoft YaHei",sans-serif;
+}
+
+body{
+
+background:
+radial-gradient(circle at 20% 20%,#ffebe9,#ffe3e0),
+linear-gradient(135deg,#9b0000,#4a0000);
+
+min-height:100vh;
+padding:40px;
+
+color:#4a0000;
+
+}
+
+/* 主容器 */
+
+.container{
+max-width:1200px;
+margin:auto;
+}
+
+/* 标题 */
+
+.header{
+text-align:center;
+margin-bottom:40px;
+}
+
+.header h1{
+
+font-size:42px;
+color:#fff;
+
+letter-spacing:4px;
+
+text-shadow:0 4px 12px rgba(0,0,0,0.4);
+
+}
+
+/* 国风卡片 */
+
+.glass{
+
+background:#fff8f5;
+
+border-radius:18px;
+
+padding:30px;
+
+box-shadow:
+
+0 15px 40px rgba(0,0,0,0.2);
+
+border:2px solid #e5b7b0;
+
+}
+
+/* 输入区 */
+
+.input-box{
+
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+margin-bottom:20px;
+
+}
+
+input{
+
+padding:14px;
+
+border-radius:8px;
+
+border:1px solid #e2b8b1;
+
+background:#fff;
+
+font-size:14px;
+
+}
+
+/* 按钮 */
+
+.generate-btn{
+
+padding:14px 28px;
+
+border:none;
+
+border-radius:30px;
+
+background:linear-gradient(45deg,#c40000,#ff6a00);
+
+color:#fff;
+
+font-size:16px;
+
+cursor:pointer;
+
+box-shadow:0 6px 20px rgba(200,0,0,0.4);
+
+}
+
+/* 卡片区 */
+
+.cards{
+
+margin-top:40px;
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(400px,1fr));
+
+gap:25px;
+
+}
+
+/* 提示词卡片 */
+
+.card{
+
+background:#fffdfc;
+
+border-radius:14px;
+
+padding:20px;
+
+border:1px solid #ecd3cf;
+
+box-shadow:0 8px 20px rgba(0,0,0,0.15);
+
+position:relative;
+
+}
+
+/* 复制按钮 */
+
+.copy-btn{
+
+position:absolute;
+top:10px;
+right:10px;
+
+border:none;
+
+background:#c40000;
+
+color:#fff;
+
+padding:6px 12px;
+
+border-radius:6px;
+
+cursor:pointer;
+
+font-size:12px;
+
+}
+
+.card pre{
+
+white-space:pre-wrap;
+
+line-height:1.7;
+
+font-size:13px;
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+<h1>纸上乾坤 · 剪纸艺术海报提示词智能体</h1>
+</div>
+
+<div class="glass">
+
+<div class="input-box">
+
+<input id="theme" placeholder="海报主题">
+<input id="title" placeholder="主标题">
+<input id="subtitle" placeholder="副标题">
+<input id="product" placeholder="产品名称 / 品牌名称">
+
+</div>
+
+<button class="generate-btn" onclick="generate()">生成20组剪纸海报提示词</button>
+
+</div>
+
+<div class="cards" id="cards"></div>
+
+</div>
+
+
+<script>
+
+const tags=[
+
+"非遗传承","新春限定","手工刻纸","民间艺术",
+"东方美学","国风艺术","传统文化","剪纸工艺",
+"文化展览","中国匠心","吉祥文化","民俗符号"
+
+]
+
+const visuals=[
+
+"生肖剪纸","花鸟鱼虫剪纸","戏曲人物剪纸","民间故事剪纸",
+"舞龙舞狮剪纸","丰收场景剪纸","城市剪影剪纸化","文创产品剪纸化"
+
+]
+
+function random(arr){
+
+return arr[Math.floor(Math.random()*arr.length)]
+
+}
+
+function generate(){
+
+let theme=document.getElementById("theme").value
+let title=document.getElementById("title").value
+let subtitle=document.getElementById("subtitle").value
+let product=document.getElementById("product").value
+
+let container=document.getElementById("cards")
+
+container.innerHTML=""
+
+for(let i=1;i<=20;i++){
+
+let tag=random(tags)
+let visual=random(visuals)
+
+let text=
+
+`主题：${theme}
+
+主标题：
+${title}（剪纸镂空字体，阴刻阳刻结合，红纸雕刻质感）
+
+副标题：
+${subtitle}（窗花嵌字形式或剪纸题签呈现）
+
+辅助文字 / 标签：
+${tag} · 手工刻纸 · 民俗文化
+
+核心视觉元素：
+${visual} + 如意纹 + 云纹 + 铜钱纹，
+多层纸张叠加形成剪纸空间景深
+
+视觉表现手法：
+镂空透光、层叠景深、阴阳刻对比、
+多层套色剪纸、纸张肌理刻痕、
+剪纸投影形成空间层次
+
+文字布局：
+主标题嵌入主体剪纸图形，
+副标题以窗花标签形式呈现，
+辅助文字刻入连续剪纸纹样中
+
+风格描述：
+传统剪纸艺术的现代表达，
+镂空光影层次丰富，
+红色主调结合多色套染，
+民俗韵味与现代设计融合，
+整体温暖厚重、具有文化气息。`
+
+let card=document.createElement("div")
+card.className="card"
+
+card.innerHTML=
+
+`<button class="copy-btn" onclick="copyText(this)">复制</button>
+<pre>${text}</pre>`
+
+container.appendChild(card)
+
+}
+
+}
+
+function copyText(btn){
+
+let text=btn.nextElementSibling.innerText
+
+navigator.clipboard.writeText(text)
+
+btn.innerText="已复制✓"
+
+setTimeout(()=>{
+btn.innerText="复制"
+},3000)
+
+}
+
+</script>
+
+</body>
+</html>
